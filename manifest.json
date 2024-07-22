@@ -1,0 +1,27 @@
+{
+  "name": "Hello Extensions",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://music.youtube.com/*"
+      ],
+      "js": ["content.js"]
+    },
+    {
+      "matches": ["https://www.khanacademy.org/profile/me/progress"],
+      "js": ["contentScript2.js"]
+    }
+  ]
+}
+

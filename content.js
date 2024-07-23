@@ -1,7 +1,10 @@
 // Send a message to the background script
+// window.addEventListener('beforeunload', function() {
+//   if (window.location.hostname.includes("www.youtube.com") || window.location.hostname.includes("music.youtube.com")) {
+//     window.location.replace("https://studio.youtube.com/");
+//   }
+// });
 
-
-  
 // Create a new button element
 const button = document.createElement('button');
 button.textContent = 'Click Me';

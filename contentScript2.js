@@ -48,10 +48,17 @@ function clickFirstButtonInDiv() {
             var h1tag1 = containerDiv.getElementsByTagName('h1')[2];
             var h1tag2 = containerDiv.getElementsByTagName('h1')[3];
             if (h1tag1 && h1tag2) {
-                chrome.runtime.sendMessage({ type: "greeting", text: h1tag1.innerText }, (response) => {
-                    console.log("Received response from background script:", response.number);
-                  });
+                let h1num1 = parseInt(h1tag1.innerText, 10);
+                let h1num2 = parseInt(h1tag2.innerText, 10);
+                const currentDate = new Date();
+                const watch_time = { h1num1: h1num1, h1num2: h1num2 , currentDate: currentDate};
+                chrome.storage.local.set({ watch_time: watch_time }, function () {
+                    console.log('Watch-Time is set to ', watch_time);
+                });
 
+                chrome.runtime.sendMessage({ type: "watch_time", h1num1: h1num1, h1num2: h1num2 }, (response) => {
+                    console.log("Received response from background script:", response.number);
+                });
                 console.log(h1tag1.innerText, " ", h1tag2.innerText)
                 worknotdone = false;
             }
